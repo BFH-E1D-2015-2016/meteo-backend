@@ -1,0 +1,440 @@
+[1mdiff --git a/Cargo.lock b/Cargo.lock[m
+[1mindex fb4588f..f00f1a5 100644[m
+[1m--- a/Cargo.lock[m
+[1m+++ b/Cargo.lock[m
+[36m@@ -4,6 +4,7 @@[m [mversion = "0.1.0"[m
+ dependencies = [[m
+  "chrono 0.2.25 (registry+https://github.com/rust-lang/crates.io-index)",[m
+  "glob 0.2.11 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "nickel 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)",[m
+  "regex 0.1.80 (registry+https://github.com/rust-lang/crates.io-index)",[m
+  "rusqlite 0.7.3 (registry+https://github.com/rust-lang/crates.io-index)",[m
+ ][m
+[36m@@ -31,11 +32,68 @@[m [mdependencies = [[m
+ ][m
+ [m
+ [[package]][m
+[32m+[m[32mname = "cookie"[m
+[32m+[m[32mversion = "0.2.5"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "url 1.2.4 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "glob"[m
+ version = "0.2.11"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+ [m
+ [[package]][m
+[32m+[m[32mname = "groupable"[m
+[32m+[m[32mversion = "0.2.0"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "hpack"[m
+[32m+[m[32mversion = "0.2.0"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "httparse"[m
+[32m+[m[32mversion = "1.2.1"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "hyper"[m
+[32m+[m[32mversion = "0.9.14"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "cookie 0.2.5 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "httparse 1.2.1 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "language-tags 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "mime 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "num_cpus 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "solicit 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "traitobject 0.0.1 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "typeable 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "unicase 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "url 1.2.4 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "idna"[m
+[32m+[m[32mversion = "0.1.0"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "matches 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "unicode-bidi 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "unicode-normalization 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "kernel32-sys"[m
+ version = "0.2.2"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+[36m@@ -45,6 +103,16 @@[m [mdependencies = [[m
+ ][m
+ [m
+ [[package]][m
+[32m+[m[32mname = "language-tags"[m
+[32m+[m[32mversion = "0.2.2"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "lazy_static"[m
+[32m+[m[32mversion = "0.1.16"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "libc"[m
+ version = "0.2.18"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+[36m@@ -64,6 +132,11 @@[m [mversion = "0.0.9"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+ [m
+ [[package]][m
+[32m+[m[32mname = "log"[m
+[32m+[m[32mversion = "0.3.6"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "lru-cache"[m
+ version = "0.0.7"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+[36m@@ -72,6 +145,11 @@[m [mdependencies = [[m
+ ][m
+ [m
+ [[package]][m
+[32m+[m[32mname = "matches"[m
+[32m+[m[32mversion = "0.1.4"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "memchr"[m
+ version = "0.1.11"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+[36m@@ -80,6 +158,47 @@[m [mdependencies = [[m
+ ][m
+ [m
+ [[package]][m
+[32m+[m[32mname = "mime"[m
+[32m+[m[32mversion = "0.2.2"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "modifier"[m
+[32m+[m[32mversion = "0.1.0"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "mustache"[m
+[32m+[m[32mversion = "0.6.3"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "nickel"[m
+[32m+[m[32mversion = "0.9.0"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "groupable 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "hyper 0.9.14 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "lazy_static 0.1.16 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "modifier 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "mustache 0.6.3 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "plugin 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "regex 0.1.80 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "typemap 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "url 1.2.4 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "num"[m
+ version = "0.1.36"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+[36m@@ -112,11 +231,27 @@[m [mversion = "0.1.36"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+ [m
+ [[package]][m
+[32m+[m[32mname = "num_cpus"[m
+[32m+[m[32mversion = "1.2.0"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "libc 0.2.18 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "pkg-config"[m
+ version = "0.3.8"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+ [m
+ [[package]][m
+[32m+[m[32mname = "plugin"[m
+[32m+[m[32mversion = "0.2.6"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "typemap 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "regex"[m
+ version = "0.1.80"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+[36m@@ -146,6 +281,33 @@[m [mdependencies = [[m
+ ][m
+ [m
+ [[package]][m
+[32m+[m[32mname = "rustc-serialize"[m
+[32m+[m[32mversion = "0.3.22"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "rustc_version"[m
+[32m+[m[32mversion = "0.1.7"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "semver 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "semver"[m
+[32m+[m[32mversion = "0.1.20"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "solicit"[m
+[32m+[m[32mversion = "0.4.4"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "hpack 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "thread-id"[m
+ version = "2.0.0"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+[36m@@ -173,6 +335,67 @@[m [mdependencies = [[m
+ ][m
+ [m
+ [[package]][m
+[32m+[m[32mname = "traitobject"[m
+[32m+[m[32mversion = "0.0.1"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "traitobject"[m
+[32m+[m[32mversion = "0.0.3"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "typeable"[m
+[32m+[m[32mversion = "0.1.2"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "typemap"[m
+[32m+[m[32mversion = "0.3.3"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "unsafe-any 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "unicase"[m
+[32m+[m[32mversion = "1.4.0"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "rustc_version 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "unicode-bidi"[m
+[32m+[m[32mversion = "0.2.4"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "matches 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "unicode-normalization"[m
+[32m+[m[32mversion = "0.1.3"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "unsafe-any"[m
+[32m+[m[32mversion = "0.4.1"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "traitobject 0.0.3 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+[32m+[m[32mname = "url"[m
+[32m+[m[32mversion = "1.2.4"[m
+[32m+[m[32msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+[32m+[m[32mdependencies = [[m
+[32m+[m[32m "idna 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m "matches 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",[m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m[32m[[package]][m
+ name = "utf8-ranges"[m
+ version = "0.1.3"[m
+ source = "registry+https://github.com/rust-lang/crates.io-index"[m
+[36m@@ -191,24 +414,53 @@[m [msource = "registry+https://github.com/rust-lang/crates.io-index"[m
+ "checksum aho-corasick 0.5.3 (registry+https://github.com/rust-lang/crates.io-index)" = "ca972c2ea5f742bfce5687b9aef75506a764f61d37f8f649047846a9686ddb66"[m
+ "checksum bitflags 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)" = "aad18937a628ec6abcd26d1489012cc0e18c21798210f491af69ded9b881106d"[m
+ "checksum chrono 0.2.25 (registry+https://github.com/rust-lang/crates.io-index)" = "9213f7cd7c27e95c2b57c49f0e69b1ea65b27138da84a170133fd21b07659c00"[m
+[32m+[m[32m"checksum cookie 0.2.5 (registry+https://github.com/rust-lang/crates.io-index)" = "0e3d6405328b6edb412158b3b7710e2634e23f3614b9bb1c412df7952489a626"[m
+ "checksum glob 0.2.11 (registry+https://github.com/rust-lang/crates.io-index)" = "8be18de09a56b60ed0edf84bc9df007e30040691af7acd1c41874faac5895bfb"[m
+[32m+[m[32m"checksum groupable 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "32619942b8be646939eaf3db0602b39f5229b74575b67efc897811ded1db4e57"[m
+[32m+[m[32m"checksum hpack 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3d2da7d3a34cf6406d9d700111b8eafafe9a251de41ae71d8052748259343b58"[m
+[32m+[m[32m"checksum httparse 1.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "a6e7a63e511f9edffbab707141fbb8707d1a3098615fb2adbd5769cdfcc9b17d"[m
+[32m+[m[32m"checksum hyper 0.9.14 (registry+https://github.com/rust-lang/crates.io-index)" = "bcb3fc65554155980167fb821d05c7c66177f92464976c0b676a19d9e03387a7"[m
+[32m+[m[32m"checksum idna 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1053236e00ce4f668aeca4a769a09b3bf5a682d802abd6f3cb39374f6b162c11"[m
+ "checksum kernel32-sys 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "7507624b29483431c0ba2d82aece8ca6cdba9382bff4ddd0f7490560c056098d"[m
+[32m+[m[32m"checksum language-tags 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "a91d884b6667cd606bb5a69aa0c99ba811a115fc68915e7056ec08a46e93199a"[m
+[32m+[m[32m"checksum lazy_static 0.1.16 (registry+https://github.com/rust-lang/crates.io-index)" = "cf186d1a8aa5f5bee5fd662bc9c1b949e0259e1bcc379d1f006847b0080c7417"[m
+ "checksum libc 0.2.18 (registry+https://github.com/rust-lang/crates.io-index)" = "a51822fc847e7a8101514d1d44e354ba2ffa7d4c194dcab48870740e327cac70"[m
+ "checksum libsqlite3-sys 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "663508cb9c1e23363aea1a8b1f7d6340394ebc3bc3a6daebfb9cc99b8feaf2ec"[m
+ "checksum linked-hash-map 0.0.9 (registry+https://github.com/rust-lang/crates.io-index)" = "83f7ff3baae999fdf921cccf54b61842bb3b26868d50d02dff48052ebec8dd79"[m
+[32m+[m[32m"checksum log 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)" = "ab83497bf8bf4ed2a74259c1c802351fcd67a65baa86394b6ba73c36f4838054"[m
+ "checksum lru-cache 0.0.7 (registry+https://github.com/rust-lang/crates.io-index)" = "42d50dcb5d9f145df83b1043207e1ac0c37c9c779c4e128ca4655abc3f3cbf8c"[m
+[32m+[m[32m"checksum matches 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)" = "efd7622e3022e1a6eaa602c4cea8912254e5582c9c692e9167714182244801b1"[m
+ "checksum memchr 0.1.11 (registry+https://github.com/rust-lang/crates.io-index)" = "d8b629fb514376c675b98c1421e80b151d3817ac42d7c667717d282761418d20"[m
+[32m+[m[32m"checksum mime 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "b5c93a4bd787ddc6e7833c519b73a50883deb5863d76d9b71eb8216fb7f94e66"[m
+[32m+[m[32m"checksum modifier 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "41f5c9112cb662acd3b204077e0de5bc66305fa8df65c8019d5adb10e9ab6e58"[m
+[32m+[m[32m"checksum mustache 0.6.3 (registry+https://github.com/rust-lang/crates.io-index)" = "f2fac05c29a9b1fe86c828ec974d6f027679576711a246711c476e548bf7d741"[m
+[32m+[m[32m"checksum nickel 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = "14bdda46396b6447ae5f22b74296cb517d5c4659f31e3cfb5351bdd8e129791d"[m
+ "checksum num 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)" = "bde7c03b09e7c6a301ee81f6ddf66d7a28ec305699e3d3b056d2fc56470e3120"[m
+ "checksum num-integer 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)" = "fb24d9bfb3f222010df27995441ded1e954f8f69cd35021f6bef02ca9552fb92"[m
+ "checksum num-iter 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)" = "287a1c9969a847055e1122ec0ea7a5c5d6f72aad97934e131c83d5c08ab4e45c"[m
+ "checksum num-traits 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)" = "a16a42856a256b39c6d3484f097f6713e14feacd9bfb02290917904fae46c81c"[m
+[32m+[m[32m"checksum num_cpus 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "55aabf4e2d6271a2e4e4c0f2ea1f5b07cc589cc1a9e9213013b54a76678ca4f3"[m
+ "checksum pkg-config 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)" = "8cee804ecc7eaf201a4a207241472cc870e825206f6c031e3ee2a72fa425f2fa"[m
+[32m+[m[32m"checksum plugin 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)" = "1a6a0dc3910bc8db877ffed8e457763b317cf880df4ae19109b9f77d277cf6e0"[m
+ "checksum regex 0.1.80 (registry+https://github.com/rust-lang/crates.io-index)" = "4fd4ace6a8cf7860714a2c2280d6c1f7e6a413486c13298bbc86fd3da019402f"[m
+ "checksum regex-syntax 0.3.9 (registry+https://github.com/rust-lang/crates.io-index)" = "f9ec002c35e86791825ed294b50008eea9ddfc8def4420124fbc6b08db834957"[m
+ "checksum rusqlite 0.7.3 (registry+https://github.com/rust-lang/crates.io-index)" = "e9b3854687228334d8a579cd2f666ddd7fb46a5f68ac0460da2898394c4679d2"[m
+[32m+[m[32m"checksum rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)" = "237546c689f20bb44980270c73c3b9edd0891c1be49cc1274406134a66d3957b"[m
+[32m+[m[32m"checksum rustc_version 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)" = "c5f5376ea5e30ce23c03eb77cbe4962b988deead10910c372b226388b594c084"[m
+[32m+[m[32m"checksum semver 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)" = "d4f410fedcf71af0345d7607d246e7ad15faaadd49d240ee3b24e5dc21a820ac"[m
+[32m+[m[32m"checksum solicit 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)" = "172382bac9424588d7840732b250faeeef88942e37b6e35317dce98cafdd75b2"[m
+ "checksum thread-id 2.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = "a9539db560102d1cef46b8b78ce737ff0bb64e7e18d35b2a5688f7d097d0ff03"[m
+ "checksum thread_local 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)" = "8576dbbfcaef9641452d5cf0df9b0e7eeab7694956dd33bb61515fb8f18cfdd5"[m
+ "checksum time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)" = "3c7ec6d62a20df54e07ab3b78b9a3932972f4b7981de295563686849eb3989af"[m
+[32m+[m[32m"checksum traitobject 0.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "07eaeb7689bb7fca7ce15628319635758eda769fed481ecfe6686ddef2600616"[m
+[32m+[m[32m"checksum traitobject 0.0.3 (registry+https://github.com/rust-lang/crates.io-index)" = "9dc23794ff47c95882da6f9d15de9a6be14987760a28cc0aafb40b7675ef09d8"[m
+[32m+[m[32m"checksum typeable 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)" = "1410f6f91f21d1612654e7cc69193b0334f909dcf2c790c4826254fbb86f8887"[m
+[32m+[m[32m"checksum typemap 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "653be63c80a3296da5551e1bfd2cca35227e13cdd08c6668903ae2f4f77aa1f6"[m
+[32m+[m[32m"checksum unicase 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "13a5906ca2b98c799f4b1ab4557b76367ebd6ae5ef14930ec841c74aed5f3764"[m
+[32m+[m[32m"checksum unicode-bidi 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "b61814f3e7fd0e0f15370f767c7c943e08bc2e3214233ae8f88522b334ceb778"[m
+[32m+[m[32m"checksum unicode-normalization 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)" = "5e94e9f6961090fcc75180629c4ef33e5310d6ed2c0dd173f4ca63c9043b669e"[m
+[32m+[m[32m"checksum unsafe-any 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)" = "b351086021ebc264aea3ab4f94d61d889d98e5e9ec2d985d993f50133537fd3a"[m
+[32m+[m[32m"checksum url 1.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "f024e241a55f5c88401595adc1d4af0c9649e91da82d0e190fe55950231ae575"[m
+ "checksum utf8-ranges 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)" = "a1ca13c08c41c9c3e04224ed9ff80461d97e121589ff27c753a16cb10830ae0f"[m
+ "checksum winapi 0.2.8 (registry+https://github.com/rust-lang/crates.io-index)" = "167dc9d6949a9b857f3451275e911c3f44255842c1f7a76f33c55103a909087a"[m
+ "checksum winapi-build 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "2d315eee3b34aca4797b2da6b13ed88266e6d612562a0c46390af8299fc699bc"[m
+[1mdiff --git a/Cargo.toml b/Cargo.toml[m
+[1mindex e3cf13c..42f7f65 100644[m
+[1m--- a/Cargo.toml[m
+[1m+++ b/Cargo.toml[m
+[36m@@ -7,4 +7,5 @@[m [mauthors = ["Samuel Dolt <samuel@dolt.ch>"][m
+ glob = "0.2"[m
+ regex = "0.1.80"[m
+ rusqlite = "0.7.3"[m
+[31m-chrono = "0.2.25"[m
+\ No newline at end of file[m
+[32m+[m[32mchrono = "0.2.25"[m
+[32m+[m[32mnickel = "0.9.0"[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main.rs b/src/main.rs[m
+[1mindex 904922d..6872d9e 100644[m
+[1m--- a/src/main.rs[m
+[1m+++ b/src/main.rs[m
+[36m@@ -3,6 +3,10 @@[m [mextern crate regex;[m
+ extern crate rusqlite;[m
+ extern crate chrono;[m
+ [m
+[32m+[m[32m#[macro_use][m
+[32m+[m[32mextern crate nickel;[m
+[32m+[m
+[32m+[m
+ [m
+ use std::str::FromStr;[m
+ use std::path::PathBuf;[m
+[36m@@ -19,6 +23,10 @@[m [muse std::error::Error;[m
+ use std::fmt::{Debug, Display};[m
+ use std::fmt;[m
+ [m
+[32m+[m[32muse std::thread;[m
+[32m+[m
+[32m+[m[32mpub mod server;[m
+[32m+[m
+ #[derive(Debug)][m
+ enum TmpError {[m
+     IOError(std::io::Error),[m
+[36m@@ -105,7 +113,7 @@[m [mfn read_sensor() -> Result<u32, TmpError> {[m
+         if re_crc.is_match(std::str::from_utf8(&text)?) {[m
+             let re_temp = Regex::new(r"t=(-?\d+)")?;[m
+ [m
+[31m-            match re_temp.captures(std::str::from_utf8(&text)?).unwrap().at(1) {[m
+[32m+[m[32m            match re_temp.http://canvasjs.com/captures(std::str::from_utf8(&text)?).unwrap().at(1) {[m
+                 Some(tmp) => {[m
+                     let temperature = u32::from_str(tmp)?;[m
+                     return Ok(temperature);[m
+[36m@@ -134,19 +142,28 @@[m [mfn main() {[m
+ [m
+     create_table(&conn);[m
+ [m
+[31m-    loop {[m
+[31m-        println!("{}", read_sensor().unwrap());[m
+[32m+[m[32m    let handle1 = thread::spawn(move || {[m
+[32m+[m[32m        loop {[m
+[32m+[m[32m            // println!("{}", read_sensor().unwrap());[m
+ [m
+[31m-        let timestamp = UTC::now().timestamp().to_string();[m
+[31m-        let value = "2500".to_string();[m
+[32m+[m[32m            let timestamp = UTC::now().timestamp().to_string();[m
+[32m+[m[32m            let value = "2500".to_write!(&mut w, "formatted {}", "arguments").unwrap().string();[m
+ [m
+[31m-        conn.execute("[m
+[32m+[m[32m            conn.execute("[m
+             INSERT INTO tmp (timestmp, value) VALUES ($1, $2)[m
+         ",[m
+[31m-                     &[&timestamp, &value])[m
+[31m-            .unwrap();[m
+[32m+[m[32m                         &[&timestamp, &value])[m
+[32m+[m[32m                .unwrap();[m
+[32m+[m[32m            std::thread::sleep(std::time::Duration::from_secs(5));[m
+[32m+[m[32m        }[m
+[32m+[m[32m    });[m
+[32m+[m
+[32m+[m[32m    let handle2 = thread::spawn(move || {[m
+[32m+[m[32m        server::run();[m
+[32m+[m[32m    });[m
+[32m+[m
+[32m+[m[32m    handle1.join();[m
+[32m+[m
+ [m
+[31m-        std::thread::sleep(std::time::Duration::from_secs(5));[m
+ [m
+[31m-    }[m
+ }[m

@@ -3,6 +3,10 @@ extern crate regex;
 extern crate rusqlite;
 extern crate chrono;
 
+#[macro_use]
+extern crate nickel;
+
+
 
 use std::str::FromStr;
 use std::path::PathBuf;
@@ -18,6 +22,11 @@ use std::error;
 use std::error::Error;
 use std::fmt::{Debug, Display};
 use std::fmt;
+
+use std::thread;
+
+pub mod server;
+pub mod csv;
 
 #[derive(Debug)]
 enum TmpError {
@@ -117,36 +126,55 @@ fn read_sensor() -> Result<u32, TmpError> {
 
     Err(TmpError::Unknow)
 
+
 }
 fn search_sensors() -> Vec<PathBuf> {
 
     glob::glob("/sys/bus/w1/devices/28-*/w1_slave").unwrap().filter_map(Result::ok).collect()
 }
 
-fn create_table(conn: &Connection) {
+fn create_table() {
+    let conn = Connection::open("db.sqlite3").unwrap();
 
-    conn.execute(include_str!("create_table.sql"), &[]).unwrap();
+    let _ = conn.execute(include_str!("create_table.sql"), &[]);
 }
 
 fn main() {
 
-    let conn = Connection::open_in_memory().unwrap();
 
-    create_table(&conn);
+    create_table();
 
-    loop {
-        println!("{}", read_sensor().unwrap());
+    let handle1 = thread::spawn(|| {
 
-        let timestamp = UTC::now().timestamp().to_string();
-        let value = "2500".to_string();
+        loop {
+            let conn = Connection::open("db.sqlite3").unwrap();
 
-        conn.execute("
+
+            // println!("{}", read_sensor().unwrap());
+
+            let timestamp = UTC::now().timestamp().to_string();
+            let value = format!("{}", read_sensor().unwrap()).to_string();
+
+
+            conn.execute("
             INSERT INTO tmp (timestmp, value) VALUES ($1, $2)
         ",
-                     &[&timestamp, &value])
-            .unwrap();
+                         &[&timestamp, &value])
+                .unwrap();
+            std::thread::sleep(std::time::Duration::from_secs(5));
+        }
+    });
 
-        std::thread::sleep(std::time::Duration::from_secs(5));
+    let handle2 = thread::spawn(|| {
+        server::run();
+    });
 
-    }
+    let handle3 = thread::spawn(|| {
+        csv::run();
+    });
+
+    handle2.join();
+
+
+
 }
