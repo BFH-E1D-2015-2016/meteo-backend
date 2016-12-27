@@ -17,7 +17,7 @@ pub fn run() {
 
         let mut stmt = conn.prepare("SELECT timestmp, value FROM tmp").unwrap();
         let mut tmp_iter = stmt.query_map(&[], |row| {
-            let data: (String, String) =
+            let data: (String, i64) =
         (
             row.get(0),
             row.get(1)
