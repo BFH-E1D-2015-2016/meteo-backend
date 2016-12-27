@@ -20,5 +20,5 @@ pub fn run() {
         format!("No static file with path '{}'!", path)
     });
 
-    server.listen("127.0.0.1:8080").unwrap();
+    server.listen("0.0.0.0:8080").unwrap();
 }
