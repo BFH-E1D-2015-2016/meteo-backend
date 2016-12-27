@@ -7,6 +7,7 @@ use std::fs::File;
 use std::io::Read;
 
 fn search_sensors() -> Vec<PathBuf> {
+
     glob::glob("/sys/bus/w1/devices/28-*/w1_slave").unwrap().filter_map(Result::ok).collect()
 }
 
@@ -23,7 +24,7 @@ fn main() {
         if re_crc.is_match(std::str::from_utf8(&text).unwrap()) {
             let re_temp = Regex::new(r"t=(-?\d+)").unwrap();
 
-            match re_temp.captures(std::str::from_utf8(&text).unwrap()).unwrap().at(0) {
+            match re_temp.captures(std::str::from_utf8(&text).unwrap()).unwrap().at(1) {
                 Some(tmp) => println!("{}", tmp),
                 None => {}
             };
