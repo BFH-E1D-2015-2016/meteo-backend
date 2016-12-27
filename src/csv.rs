@@ -1,7 +1,7 @@
 use std::fs::OpenOptions;
 
 use rusqlite::Connection;
-
+use std::io::Write;
 pub fn run() {
 
     loop {
@@ -17,23 +17,18 @@ pub fn run() {
 
         let mut stmt = conn.prepare("SELECT timestmp, value FROM tmp").unwrap();
         let mut tmp_iter = stmt.query_map(&[], |row| {
-            let data: (i64, i64) =
-        (
-            row.get(0),
-            row.get(1)
-        );
-        data
-    }).unwrap();
+                let data: (i64, i64) = (row.get(0), row.get(1));
+                data
+            })
+            .unwrap();
 
-    for tmp in tmp_iter {
-        println!("Found person {:?}", tmp.unwrap());
-    }
+        for tmp in tmp_iter {
+            let (timestmp, value) = tmp.unwrap();
+            write!(&file, "{}, {}", timestmp, (value as f64) / 1000.0);
+        }
 
 
 
-        //for line in lines {
-        //    write!(&mut file, "{}, {}", date, value);
-        //}
 
 
         ::std::thread::sleep(::std::time::Duration::from_secs(7));
