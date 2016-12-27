@@ -1,11 +1,18 @@
 extern crate glob;
 extern crate regex;
+extern crate rusqlite;
+extern crate chrono;
+
 
 use std::str::FromStr;
 use std::path::PathBuf;
 use regex::Regex;
 use std::fs::File;
 use std::io::Read;
+
+use rusqlite::Connection;
+use chrono::DateTime;
+use chrono::UTC;
 
 use std::error;
 use std::error::Error;
@@ -16,7 +23,7 @@ use std::fmt;
 enum TmpError {
     IOError(std::io::Error),
     RegexError(regex::Error),
-    FloatError(std::num::ParseFloatError),
+    IntError(std::num::ParseIntError),
     Utf8Error(std::str::Utf8Error),
     Unknow,
 }
@@ -33,9 +40,9 @@ impl From<regex::Error> for TmpError {
     }
 }
 
-impl From<std::num::ParseFloatError> for TmpError {
-    fn from(err: std::num::ParseFloatError) -> TmpError {
-        TmpError::FloatError(err)
+impl From<std::num::ParseIntError> for TmpError {
+    fn from(err: std::num::ParseIntError) -> TmpError {
+        TmpError::IntError(err)
     }
 }
 
@@ -50,7 +57,7 @@ impl Error for TmpError {
     fn description(&self) -> &str {
         match *self {
             TmpError::IOError(ref err) => err.description(),
-            TmpError::FloatError(ref err) => err.description(),
+            TmpError::IntError(ref err) => err.description(),
             TmpError::RegexError(ref err) => err.description(),
             TmpError::Utf8Error(ref err) => err.description(),
             TmpError::Unknow => "Unknow error.",
@@ -61,7 +68,7 @@ impl Error for TmpError {
     fn cause(&self) -> Option<&Error> {
         match *self {
             TmpError::IOError(ref err) => Some(err),
-            TmpError::FloatError(ref err) => Some(err),
+            TmpError::IntError(ref err) => Some(err),
             TmpError::RegexError(ref err) => Some(err),
             TmpError::Utf8Error(ref err) => Some(err),
             TmpError::Unknow => None,
@@ -75,7 +82,7 @@ impl Display for TmpError {
             // Both underlying errors already impl `Display`, so we defer to
             // their implementations.
             TmpError::IOError(ref err) => write!(f, "IO error: {}", err),
-            TmpError::FloatError(ref err) => write!(f, "Parse error: {}", err),
+            TmpError::IntError(ref err) => write!(f, "Parse error: {}", err),
             TmpError::RegexError(ref err) => write!(f, "Parse error: {}", err),
             TmpError::Utf8Error(ref err) => write!(f, "Parse error: {}", err),
             TmpError::Unknow => write!(f, "Unknow error"),
@@ -84,7 +91,7 @@ impl Display for TmpError {
 }
 
 
-fn read_sensor() -> Result<f32, TmpError> {
+fn read_sensor() -> Result<u32, TmpError> {
 
     let data = search_sensors();
     for path in data {
@@ -100,8 +107,8 @@ fn read_sensor() -> Result<f32, TmpError> {
 
             match re_temp.captures(std::str::from_utf8(&text)?).unwrap().at(1) {
                 Some(tmp) => {
-                    let temperature = f32::from_str(tmp)?;
-                    return Ok(temperature / 1000.0);
+                    let temperature = u32::from_str(tmp)?;
+                    return Ok(temperature);
                 }
                 None => {}
             };
@@ -116,7 +123,30 @@ fn search_sensors() -> Vec<PathBuf> {
     glob::glob("/sys/bus/w1/devices/28-*/w1_slave").unwrap().filter_map(Result::ok).collect()
 }
 
+fn create_table(conn: &Connection) {
+
+    conn.execute(include_str!("create_table.sql"), &[]).unwrap();
+}
 
 fn main() {
-    println!("{}", read_sensor().unwrap());
+
+    let conn = Connection::open_in_memory().unwrap();
+
+    create_table(&conn);
+
+    loop {
+        println!("{}", read_sensor().unwrap());
+
+        let timestamp = UTC::now().timestamp().to_string();
+        let value = "2500".to_string();
+
+        conn.execute("
+            INSERT INTO tmp (timestmp, value) VALUES ($1, $2)
+        ",
+                     &[&timestamp, &value])
+            .unwrap();
+
+        std::thread::sleep(std::time::Duration::from_secs(5));
+
+    }
 }

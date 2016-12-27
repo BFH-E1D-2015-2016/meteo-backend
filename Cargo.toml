@@ -6,3 +6,5 @@ authors = ["Samuel Dolt <samuel@dolt.ch>"]
 [dependencies]
 glob = "0.2"
 regex = "0.1.80"
+rusqlite = "0.7.3"
+chrono = "0.2.25"
