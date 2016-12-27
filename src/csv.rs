@@ -24,7 +24,7 @@ pub fn run() {
 
         for tmp in tmp_iter {
             let (timestmp, value) = tmp.unwrap();
-            write!(&file, "{}, {}", timestmp, (value as f64) / 1000.0);
+            write!(&file, "{}, {}\n", timestmp, (value as f64) / 1000.0);
         }
 
 
