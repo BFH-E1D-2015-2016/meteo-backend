@@ -30,7 +30,7 @@ pub fn run() {
             let (timestmp, value) = tmp.unwrap();
             let time = NaiveDateTime::from_timestamp(timestmp, 0);
             write!(&file,
-                   "{:02}{:02}{:02}{:02}{:02}{}, {}\n",
+                   "{:02}/{:02}/{:02} {:02}:{:02}:{}, {}\n",
                    time.year(),
                    time.month(),
                    time.day(),
