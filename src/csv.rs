@@ -2,6 +2,10 @@ use std::fs::OpenOptions;
 
 use rusqlite::Connection;
 use std::io::Write;
+
+use chrono::{NaiveDateTime, NaiveDate};
+use chrono::Datelike;
+use chrono::Timelike;
 pub fn run() {
 
     loop {
@@ -24,7 +28,16 @@ pub fn run() {
 
         for tmp in tmp_iter {
             let (timestmp, value) = tmp.unwrap();
-            write!(&file, "{}, {}\n", timestmp, (value as f64) / 1000.0);
+            let time = NaiveDateTime::from_timestamp(timestmp, 0);
+            write!(&file,
+                   "{:02}{:02}{:02}{:02}{:02}{}, {}\n",
+                   time.year(),
+                   time.month(),
+                   time.day(),
+                   time.hour(),
+                   time.minute(),
+                   time.second(),
+                   (value as f64) / 1000.0);
         }
 
 
