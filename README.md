@@ -8,7 +8,10 @@
 ## Installation
 
 ### Connect a 1-Wire temperature sensor (eg. a DS18B20)
-If you have a DS18B20 temperature sensor, you can connect it, using the schematic
+If you have a DS18B20 temperature sensor, you can connect it, using this schematic
+
+![Schema](https://blog.bandinelli.net/public/raspberry-pi-ds18b20-connections.jpg)
+
 from https://blog.bandinelli.net/index.php?post/2014/11/23/Temp%C3%A9rature-suivie-avec-un-Raspberry-Pi-B%2C-une-sonde-DS18B20-et-Munin
 
 ### Enable the OneWire Linux Subsystem
