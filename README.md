@@ -1,5 +1,10 @@
 # Remote Temperature Measurement with Rust and a Raspberry Pi
 
+## Authors
+
+- Christophe Burki
+- Samuel Dolt
+
 ## Installation
 
 ### Enable the OneWire Linux Subsystem
