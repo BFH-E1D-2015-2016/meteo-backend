@@ -7,16 +7,21 @@
 
 ## Installation
 
-### Enable the OneWire Linux Subsystem
-
+### Connect a 1-Wire temperature sensor (eg. a DS18B20)
 If you have a DS18B20 temperature sensor, you can connect it, using the schematic
-from"https://blog.bandinelli.net/index.php?post/2014/11/23/Temp%C3%A9rature-suivie-avec-un-Raspberry-Pi-B%2C-une-sonde-DS18B20-et-Munin
+from https://blog.bandinelli.net/index.php?post/2014/11/23/Temp%C3%A9rature-suivie-avec-un-Raspberry-Pi-B%2C-une-sonde-DS18B20-et-Munin
+
+### Enable the OneWire Linux Subsystem
 
 ```sh
 sudo raspi-config
 ```
 
-Go to "9 Advanced Options" then "AA 1-Wire" then "YES" and restart.
+Go to "9 Advanced Options" then "AA 1-Wire" then "YES"
+
+```sh
+sudo reboot
+```
 
 ### Rust compiler
 
